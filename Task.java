@@ -1,8 +1,51 @@
+
+
 class Task{
 
+    public enum TaskType {
+
+        MINING(100, 20, 0.1, 0.05),
+        FISHING(150, 20, 0.1, 0),
+        FARM_MAINTENANCE(25, 10, 0.1, 0),
+        FEEDING(75, 10, 0.1, 0),
+        FORAGING(75, 0, 0, 0),
+        SOCIALIZING(25, 0, 0, 0);
+
+        private final int moneyPerHour;
+        private final int energyPerHour;
+        private final double passingOutProbability;
+        private final double dyingProbability;
+
+        TaskType(int moneyPerHour, int energyPerHour, double passingOutProbability, double dyingProbability) {
+            this.moneyPerHour = moneyPerHour;
+            this.energyPerHour = energyPerHour;
+            this.passingOutProbability = passingOutProbability;
+            this.dyingProbability = dyingProbability;
+        }
+
+        public int getMoneyPerHour()
+        {
+            return moneyPerHour;
+        }
+
+        public int getEnergyPerHour()
+        {
+            return energyPerHour;
+        }
+
+        public double getPassingOutProbability()
+        {
+            return passingOutProbability;
+        }
+
+        public double getDyingProbability()
+        {
+            return dyingProbability;
+        }
+    }
 
     private int PRIORITY_LEVEL;
-    private TaskType TASK_TYPE;
+    private Task.TaskType TaskType;
     private int WAITING_TIME;
     private int HOUR_CREATED;
     private String DESCRIPTION;
@@ -16,10 +59,10 @@ class Task{
      * description is a string that explains what the task is
      */
 
-    public Task(int priorityLevel, TaskType taskType, int waitingTime, int hourCreated, String description){
+    public Task(int priorityLevel, Task.TaskType taskType, int waitingTime, int hourCreated, String description){
         
         this.PRIORITY_LEVEL = priorityLevel;
-        this.TASK_TYPE = taskType;
+        this.TaskType = taskType;
         this.WAITING_TIME = waitingTime;
         this.HOUR_CREATED = hourCreated;
         this.DESCRIPTION = description;
@@ -27,12 +70,12 @@ class Task{
     }
 
     // getter method for priority level
-    public int getPriorityLevel(){
+    public int getPriority(){
         return this.PRIORITY_LEVEL;
     }
     // getter method for task type
-    public TaskType getTaskType(){
-        return this.TASK_TYPE;
+    public Task.TaskType getTaskType(){
+        return this.TaskType;
     }
     //getter method for waiting time
     public int getWaitingTime(){
@@ -47,7 +90,7 @@ class Task{
         return this.DESCRIPTION;
     }
 
-    public setPriority(int priorityLevel){
+    public void setPriority(int priorityLevel){
         this.PRIORITY_LEVEL = priorityLevel;
     }
 

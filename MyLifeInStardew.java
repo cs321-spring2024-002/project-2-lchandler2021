@@ -82,34 +82,34 @@ public class MyLifeInStardew {
      * random probability, and current energy levels.
      * @param luckOfTheDay - the daily luckiness
      */
-    private TaskInterface.TaskType getTaskType(double luckOfTheDay){
+    private Task.TaskType getTaskType(double luckOfTheDay){
         probabilityOne = rand.nextDouble();
         if (taskGenerator.getCurrentEnergyStorage() < 50) { //foraging and socializing
             if(probabilityOne > 0.5) {
-                return TaskInterface.TaskType.FORAGING;
+                return Task.TaskType.FORAGING;
             }
             else {
-                return TaskInterface.TaskType.SOCIALIZING;
+                return Task.TaskType.SOCIALIZING;
             }
         }
         if(luckOfTheDay > 0.75 && probabilityOne > .10) { //fishing only
-            return TaskInterface.TaskType.FISHING;
+            return Task.TaskType.FISHING;
         }
         else {
             probabilityTwo = rand.nextDouble();
             if(probabilityOne > 0.5) { //even number
                 if (probabilityTwo > 0.49) { //higher than 50
-                    return TaskInterface.TaskType.FISHING;
+                    return Task.TaskType.FISHING;
                 }
                 else { //lower than 50
-                    return TaskInterface.TaskType.MINING;
+                    return Task.TaskType.MINING;
                 }
             }
             if(probabilityOne > 0.2) {
-                return TaskInterface.TaskType.FEEDING;
+                return Task.TaskType.FEEDING;
             }
             else {
-                return TaskInterface.TaskType.FARM_MAINTENANCE;
+                return Task.TaskType.FARM_MAINTENANCE;
             }
         }
     }
@@ -119,7 +119,7 @@ public class MyLifeInStardew {
      *
      * @param taskType - the type of Task
      */
-    private String getDetails(TaskInterface.TaskType taskType) {
+    private String getDetails(Task.TaskType taskType) {
         detailIndex = rand.nextInt();
         if(detailIndex < 0){ detailIndex = (detailIndex*(-1)); }
         detailIndex = detailIndex % 4;
@@ -154,7 +154,7 @@ public class MyLifeInStardew {
      * Runs the simulation of Task management with a specified time period.
      */
         public  void runSimulation() {
-            PriorityQueueInterface priorityQueue = new MyPriorityQueue();
+            MyPriorityQueue priorityQueue = new MyPriorityQueue();
             
             int day = 1;
             int hourTotal = 0;
@@ -184,7 +184,7 @@ public class MyLifeInStardew {
                     if (debugLevel == SHOW_HEAP) System.out.println(priorityQueue);
                     
                     if (taskGenerator.generateTask()) {
-                        TaskInterface.TaskType typeOfTask = getTaskType(luckOfTheDay);
+                        Task.TaskType typeOfTask = getTaskType(luckOfTheDay);
                         Task newTask = taskGenerator.getNewTask(hourTotal, typeOfTask, getDetails(typeOfTask));
                         System.out.format("\t\t\t\t\t\t\tNEW TASK: %s\n",newTask.toString());
                         priorityQueue.enqueue(newTask);
