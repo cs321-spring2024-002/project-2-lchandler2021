@@ -58,7 +58,9 @@ public class MaxHeap{
         
     }
 
-    // used to 
+    /*
+     * increases the key of task based on the position in the queue
+     */
     public void increaseKey(int positon, Task task){
         if(this.array[positon].compareTo(task) == 1){
             System.out.println("Error: new key must be larger than old key");
@@ -142,7 +144,7 @@ public class MaxHeap{
         }
     }
 
-    //returns max value
+    //returns max value of the heap
     public Task max(){
         if(this.isEmpty()){
             System.out.println("Error: Heap Underflow");
@@ -161,14 +163,11 @@ public class MaxHeap{
     public int getHeapSize(){
         return this.heapSize;
     }
-
+    //getter method for heap
     Task[] getHeap(){
         return this.array;
     }
     
-    public static void main(String[] args){
-
-    }
 
     
     
