@@ -82,34 +82,34 @@ public class MyLifeInStardew {
      * random probability, and current energy levels.
      * @param luckOfTheDay - the daily luckiness
      */
-    private Task.TaskType getTaskType(double luckOfTheDay){
+    private TaskInterface.TaskType getTaskType(double luckOfTheDay){
         probabilityOne = rand.nextDouble();
         if (taskGenerator.getCurrentEnergyStorage() < 50) { //foraging and socializing
             if(probabilityOne > 0.5) {
-                return Task.TaskType.FORAGING;
+                return TaskInterface.TaskType.FORAGING;
             }
             else {
-                return Task.TaskType.SOCIALIZING;
+                return TaskInterface.TaskType.SOCIALIZING;
             }
         }
         if(luckOfTheDay > 0.75 && probabilityOne > .10) { //fishing only
-            return Task.TaskType.FISHING;
+            return TaskInterface.TaskType.FISHING;
         }
         else {
             probabilityTwo = rand.nextDouble();
             if(probabilityOne > 0.5) { //even number
                 if (probabilityTwo > 0.49) { //higher than 50
-                    return Task.TaskType.FISHING;
+                    return TaskInterface.TaskType.FISHING;
                 }
                 else { //lower than 50
-                    return Task.TaskType.MINING;
+                    return TaskInterface.TaskType.MINING;
                 }
             }
             if(probabilityOne > 0.2) {
-                return Task.TaskType.FEEDING;
+                return TaskInterface.TaskType.FEEDING;
             }
             else {
-                return Task.TaskType.FARM_MAINTENANCE;
+                return TaskInterface.TaskType.FARM_MAINTENANCE;
             }
         }
     }
