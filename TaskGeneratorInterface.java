@@ -24,7 +24,7 @@ public interface TaskGeneratorInterface {
      *
      * @param taskType - the type of Task
      */
-    public void decrementEnergyStorage(Task.TaskType taskType);
+    public void decrementEnergyStorage(TaskInterface.TaskType taskType);
 
     /**
      * Resets the total energy storage to DEFAULT_ENERGY level.
@@ -71,6 +71,6 @@ public interface TaskGeneratorInterface {
      * @param task  the Task
      * @param taskType the Task's type
      */
-    public String toString(Task task, Task.TaskType taskType);
+    public String toString(Task task, TaskInterface.TaskType taskType);
 
 }

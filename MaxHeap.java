@@ -2,14 +2,17 @@
 //Left(i) = 2i
 //Right(i) = 2i + 1
 
+import java.util.Arrays;
 
 public class MaxHeap{
 
 /*
  * constructor creates an empty array
  */
-    private Task[] array;
-    int heapSize;
+    protected Task[] array; // heapsort store value
+    private int heapSize; // the size of the heap used when making insert and 
+
+
     public MaxHeap(){
         this.array = new Task[]{};
         this.heapSize = this.array.length;
@@ -20,7 +23,7 @@ public class MaxHeap{
     public MaxHeap(Task[] A){
        this.array = A.clone();
        buildMaxHeap(this.array);
-       this.heapSize = this.array.length;
+       this.heapSize = this.array.length; // initialized array heapsize is full array size
     }
 
 /*
@@ -38,10 +41,10 @@ public class MaxHeap{
 
         int largest = i - 1;
 
-        if(left <= A.length && (A[left].getPriority() > A[i].getPriority())){
+        if(left <= A.length && (A[left].compareTo(A[right]) == 1)){
             largest = left;
         }
-        if(right <= A.length && A[right].getPriority() > A[i].getPriority()){
+        if(right <= A.length && (A[right].compareTo(A[left]) == 1)){
             largest = right;
         }
         if(largest != i){
@@ -56,19 +59,20 @@ public class MaxHeap{
     }
 
     // used to 
-    public void increaseKey(int i, int key){
-        if(key < this.array[i].getPriority()){
+    public void increaseKey(int positon, Task task){
+        if(this.array[positon].compareTo(task) == 1){
             System.out.println("Error: new key must be larger than old key");
         }
-        this.array[i].setPriority(key);
+        task.setPriority(positon);
         
-        int parent_of_index = Math.floorDiv(i -1,2);
-        while(i > 0 && this.array[parent_of_index].getPriority() < this.array[i].getPriority()){
-            Task temp = this.array[i];
-            this.array[i] = this.array[parent_of_index];
+        int parent_of_index = Math.floorDiv(positon - 1,2);
+
+        while(positon > 0 && this.array[parent_of_index].compareTo(this.array[positon]) == -1){
+            Task temp = this.array[positon];
+            this.array[positon] = this.array[parent_of_index];
             this.array[parent_of_index] = temp;
 
-            i = parent_of_index;
+            positon = parent_of_index;
         }
     }
 /*
@@ -87,6 +91,7 @@ public class MaxHeap{
         return this.array;
     }
 
+    //Sorting method for heapsort must be called on a heapsort object
     public void heapSort(){
         buildMaxHeap(this.array);
         for(int i = this.heapSize -1; i > 1; i--){
@@ -100,27 +105,25 @@ public class MaxHeap{
 
         }
     }
-    public void insert(Task task, int n){
-        if(this.heapSize -1 == n){
-            System.out.println("Error: Heap overflow");
-        }
-
-        int k = task.getPriority();
-
-        this.heapSize = this.heapSize +1;
-        
-        task.setPriority(Integer.MIN_VALUE);
-        this.array[this.heapSize ] = task;
-        increaseKey( this.heapSize, k);
-
-    }
-
-    public Task[] createDoubleSizeHeap(Task[] A){
-        //Syste.arraycopy();
-        return null;
     
+
+
+    //method for inserting a value into heap
+    public void insert(Task task){
+        Task[] Array_copy = new Task[this.heapSize *2];
+        Array_copy = this.array.clone();
         
+        Array_copy[this.heapSize + 1] = task;
+        this.array = Array_copy.clone();
+         
+        maxHeapify(this.array, heapSize);
+
+
+    
+
     }
+
+   
     
     //puts max value at the end of the array
     public Task extractMax(){
@@ -146,15 +149,22 @@ public class MaxHeap{
         }
         return this.array[0];
     }
-
+    // method for defineing whether or not an array is empty
     public boolean isEmpty(){
-        if(this.array.length > 0){
+        if(this.heapSize > 0){
             return false;
         }
         return true;
     
     }
+    //getter method for heapSize
+    public int getHeapSize(){
+        return this.heapSize;
+    }
 
+    Task[] getHeap(){
+        return this.array;
+    }
     
     public static void main(String[] args){
 

@@ -1,6 +1,6 @@
 
 
-class Task{
+class Task implements TaskInterface{
 
     public enum TaskType {
 
@@ -45,7 +45,7 @@ class Task{
     }
 
     private int PRIORITY_LEVEL;
-    private Task.TaskType TaskType;
+    private TaskInterface.TaskType TaskType;
     private int WAITING_TIME;
     private int HOUR_CREATED;
     private String DESCRIPTION;
@@ -59,7 +59,7 @@ class Task{
      * description is a string that explains what the task is
      */
 
-    public Task(int priorityLevel, Task.TaskType taskType, int waitingTime, int hourCreated, String description){
+    public Task(int priorityLevel, TaskInterface.TaskType taskType, int waitingTime, int hourCreated, String description){
         
         this.PRIORITY_LEVEL = priorityLevel;
         this.TaskType = taskType;
@@ -68,18 +68,35 @@ class Task{
         this.DESCRIPTION = description;
 
     }
-
+    public int compareTo(Task task_two){
+        if(this.getPriority() > task_two.getPriority()){
+            return 1;
+        }else if (this.getPriority() == task_two.getPriority()){
+            if(this.getHourCreated() < task_two.getHourCreated()){
+                return 1;
+            }
+            else{
+                return -1;
+            }
+        }else{
+            return -1;
+        }
+        
+    }
     // getter method for priority level
     public int getPriority(){
         return this.PRIORITY_LEVEL;
     }
     // getter method for task type
-    public Task.TaskType getTaskType(){
+    public TaskInterface.TaskType getTaskType(){
         return this.TaskType;
     }
     //getter method for waiting time
     public int getWaitingTime(){
         return this.WAITING_TIME;
+    }
+    public void setWaitingTime(int waitingTime){
+        this.WAITING_TIME = waitingTime;
     }
     //getter method for hour created
     public int getHourCreated(){

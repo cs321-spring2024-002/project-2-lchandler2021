@@ -20,7 +20,7 @@ public class MaxHeapTest{
 
         Task one;
         TaskGenerator Generator = new TaskGenerator(1);
-        one = Generator.getNewTask(0, Task.TaskType.MINING,"ok");
+        one = Generator.getNewTask(0, TaskInterface.TaskType.MINING,"ok");
         Task[] Test_B = {one};
 
         MaxHeap maxHeapTest2 = new MaxHeap(Test_B);
@@ -34,8 +34,8 @@ public class MaxHeapTest{
 
         Task one_1;
         Task two_1;
-        one_1 = Generator.getNewTask(0, Task.TaskType.FISHING, "helpful");
-        two_1 = Generator.getNewTask(0, Task.TaskType.MINING,"HELLO");
+        one_1 = Generator.getNewTask(0, TaskInterface.TaskType.FISHING, "helpful");
+        two_1 = Generator.getNewTask(0, TaskInterface.TaskType.MINING,"HELLO");
 
         Task[] Test_C = {one_1, two_1};
 

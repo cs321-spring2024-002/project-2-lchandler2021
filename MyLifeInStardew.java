@@ -119,31 +119,31 @@ public class MyLifeInStardew {
      *
      * @param taskType - the type of Task
      */
-    private String getDetails(Task.TaskType taskType) {
+    private String getDetails(TaskInterface.TaskType taskType) {
         detailIndex = rand.nextInt();
         if(detailIndex < 0){ detailIndex = (detailIndex*(-1)); }
         detailIndex = detailIndex % 4;
-        if(taskType == Task.TaskType.MINING) {
+        if(taskType == TaskInterface.TaskType.MINING) {
             String[] miningDetails = {"for Copper", "for Iron", "for Gold", "for Diamonds", "for Rocks",};
             return miningDetails[detailIndex];
         }
-        if(taskType == Task.TaskType.FISHING) {
+        if(taskType == TaskInterface.TaskType.FISHING) {
             String[] fishingDetails = {"in the Ocean", "in the River", "in the Pond","in the Lake", "in the Hatcheries",};
             return fishingDetails[detailIndex];
         }
-        if(taskType == Task.TaskType.FARM_MAINTENANCE) {
+        if(taskType == TaskInterface.TaskType.FARM_MAINTENANCE) {
             String[] maintenanceDetails = {"of Harvesting Wheat", "of Clearing Rocks", "of Watering Plants","of Wood Chopping", "of Beautification",};
             return maintenanceDetails[detailIndex];
         }
-        if(taskType == Task.TaskType.FORAGING) {
+        if(taskType == TaskInterface.TaskType.FORAGING) {
             String[] foragingDetails = {"for Mushrooms", "for Berries", "for Roots","for Flowers", "for Herbs",};
             return foragingDetails[detailIndex];
         }
-        if(taskType == Task.TaskType.FEEDING) {
+        if(taskType == TaskInterface.TaskType.FEEDING) {
             String[] animalDetails = {"the Goats", "the Chickens", "the Cows","the Pigs", "the Ducks",};
             return animalDetails[detailIndex];
         }
-        if(taskType == Task.TaskType.SOCIALIZING) {
+        if(taskType == TaskInterface.TaskType.SOCIALIZING) {
             String[] socialDetails = {"with Mayor Lewis", "with Store Owner Pierre", "with Carpenter Robin","with Blacksmith Clint", "with the Wizard",};
             return socialDetails[detailIndex];
         }
@@ -184,7 +184,7 @@ public class MyLifeInStardew {
                     if (debugLevel == SHOW_HEAP) System.out.println(priorityQueue);
                     
                     if (taskGenerator.generateTask()) {
-                        Task.TaskType typeOfTask = getTaskType(luckOfTheDay);
+                        TaskInterface.TaskType typeOfTask = getTaskType(luckOfTheDay);
                         Task newTask = taskGenerator.getNewTask(hourTotal, typeOfTask, getDetails(typeOfTask));
                         System.out.format("\t\t\t\t\t\t\tNEW TASK: %s\n",newTask.toString());
                         priorityQueue.enqueue(newTask);

@@ -53,28 +53,29 @@ public interface TaskInterface {
 
     /**
      * Returns the priority.
-     *
+     *DONE
      * @return the priority
      */
     public int getPriority();
 
     /**
      * Sets the priority to the specified value.
-     *
+     *DONE
      * @param priority
      */
     public void setPriority(int priority);
 
     /**
      * Gets the type of a task.
-     *
+     *DONE
      * @return - Task.TaskType - the Task's type
      */
-    public Task.TaskType getTaskType();
+    public TaskInterface.TaskType getTaskType();
     
     
     /**
      * Gets the task description.
+     * DONE
      * @return
      */
     public String getTaskDescription();
@@ -86,13 +87,14 @@ public interface TaskInterface {
     public void incrementWaitingTime();
 
     /**
+     * DONE
      * Resets the waiting time to 0.
      */
     public void resetWaitingTime();
 
     /**
      * Gets the waiting time of a task.
-     *
+     *DONE
      * @return the waiting time
      */
     public int getWaitingTime();
