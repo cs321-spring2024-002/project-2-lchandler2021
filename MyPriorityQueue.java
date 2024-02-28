@@ -37,7 +37,7 @@ public class MyPriorityQueue extends MaxHeap{
             if(heap1.getHeap()[i].getWaitingTime() >= timeToIncrementPriority){
                 this.heap1.getHeap()[i].setWaitingTime(0);
                 if(heap1.getHeap()[i].getPriority() < maxPriority){
-                   heap1.getHeap()[i].setPriority(heap[i].getPriority() + 1);
+                   heap1.getHeap()[i].setPriority(heap1.getHeap()[i].getPriority() + 1);
                    
                 }
             }
