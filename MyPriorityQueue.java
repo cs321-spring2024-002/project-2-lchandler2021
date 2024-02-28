@@ -31,11 +31,13 @@ public class MyPriorityQueue extends MaxHeap{
      * updates each item in the heap's priority
      */
     public void update(int timeToIncrementPriority, int maxPriority){
+        
         for(int i = 0; i < heap1.getHeapSize(); i++){
-            if(heap[i].getWaitingTime() >= timeToIncrementPriority){
-                this.heap[i].setWaitingTime(0);
-                if(heap[i].getPriority() < maxPriority){
-                   heap[i].setPriority(heap[i].getPriority() + 1);
+            heap1.getHeap()[i].incrementWaitingTime();
+            if(heap1.getHeap()[i].getWaitingTime() >= timeToIncrementPriority){
+                this.heap1.getHeap()[i].setWaitingTime(0);
+                if(heap1.getHeap()[i].getPriority() < maxPriority){
+                   heap1.getHeap()[i].setPriority(heap[i].getPriority() + 1);
                    
                 }
             }

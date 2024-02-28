@@ -37,15 +37,15 @@ public class MaxHeap{
  */
     private void maxHeapify( Task[] A, int i ){
     
-        int right = 2 * i + 1; // defines the index for the right child
-        int left = 2 * i; // defines the index for the left child
+        int right = right(i); // defines the index for the right child
+        int left = left(i); // defines the index for the left child
 
-        int largest = i - 1;
+        int largest = i;
 
-        if(left <= A.length && (A[left].compareTo(A[right]) == 1)){
+        if(left < this.heapSize && (A[left].compareTo(A[largest]) == 1)){
             largest = left;
         }
-        if(right <= A.length && (A[right].compareTo(A[left]) == 1)){
+        if(right < this.heapSize && (A[right].compareTo(A[largest]) == 1)){
             largest = right;
         }
         if(largest != i){
@@ -61,28 +61,30 @@ public class MaxHeap{
 
     //returns the parent of index
     int parent(int index){
-        index = index / 2;
+        index = (index - 1) / 2;
         return index;
     }
     //returns the left child of a parent index
     int left(int index){
-        index = 2 * index;
+        index = 2 * index + 1;
         return index;
     }
     //returns the right child of a parent index
     int right(int index){
-        index = (2 * index) + 1;
+        index = (2 * index) + 2;
         return index;
     }
     /*
      * increases the key of task based on the position in the queue
      */
     public void increaseKey(int positon, Task task){
+
         if(this.heap[positon].compareTo(task) == 1){
             System.out.println("Error: new key must be larger than old key");
         }
-        task.setPriority(positon);
         
+        // task.setPriority(positon);
+        this.heap[positon] = task;
         
 
         while(positon > 0 && this.heap[parent(positon)].compareTo(this.heap[positon]) == -1){ // used compare to method
