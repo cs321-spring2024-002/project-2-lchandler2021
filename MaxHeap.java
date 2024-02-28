@@ -3,6 +3,7 @@
 //Right(i) = 2i + 1
 
 //import java.util.Arrays;
+//import java.lang.Comparable;
 
 public class MaxHeap{
 
@@ -129,7 +130,7 @@ public class MaxHeap{
     public void insert(Task task){
         //unsure how to impliment this, have prof explain it
 
-
+        //unsure about doubleing size as well
     
 
     }

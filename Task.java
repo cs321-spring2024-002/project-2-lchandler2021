@@ -1,6 +1,6 @@
+//import java.util.Comparable;
 
-
-class Task implements TaskInterface{
+class Task implements TaskInterface, Comparable<Task>{
 
     /*
      * tasktype created by professor
@@ -74,6 +74,7 @@ class Task implements TaskInterface{
     /*
      * compare to overide need to impliment does this need to be in another file? How to crrectly write the impliment class?? ask prof
      */
+    
     public int compareTo(Task task_two){
         if(this.getPriority() > task_two.getPriority()){
             return 1;
@@ -89,7 +90,7 @@ class Task implements TaskInterface{
         }
         
     }
-
+    
 
     // getter method for priority level
     public int getPriority(){
