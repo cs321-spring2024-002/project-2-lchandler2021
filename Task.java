@@ -2,6 +2,9 @@
 
 class Task implements TaskInterface{
 
+    /*
+     * tasktype created by professor
+     */
     public enum TaskType {
 
         MINING(100, 20, 0.1, 0.05),
@@ -68,6 +71,9 @@ class Task implements TaskInterface{
         this.DESCRIPTION = description;
 
     }
+    /*
+     * compare to overide need to impliment does this need to be in another file? How to crrectly write the impliment class?? ask prof
+     */
     public int compareTo(Task task_two){
         if(this.getPriority() > task_two.getPriority()){
             return 1;
@@ -83,37 +89,48 @@ class Task implements TaskInterface{
         }
         
     }
+
+
     // getter method for priority level
     public int getPriority(){
         return this.PRIORITY_LEVEL;
     }
+
     // getter method for task type
     public TaskInterface.TaskType getTaskType(){
         return this.TaskType;
     }
+
     //getter method for waiting time
     public int getWaitingTime(){
         return this.WAITING_TIME;
     }
+
     public void setWaitingTime(int waitingTime){
         this.WAITING_TIME = waitingTime;
     }
+
     //getter method for hour created
     public int getHourCreated(){
         return this.HOUR_CREATED;
     }
+
     //gettter method for description
     public String getTaskDescription(){
         return this.DESCRIPTION;
     }
 
+    //setter method for priority
     public void setPriority(int priorityLevel){
         this.PRIORITY_LEVEL = priorityLevel;
     }
 
+    //increases waitng time by one
     public void incrementWaitingTime(){
         this.WAITING_TIME++;
     }
+
+    // resets waiting time to zero
     public void resetWaitingTime(){
         this.WAITING_TIME = 0;
     }

@@ -29,24 +29,39 @@ public class TaskGenerator implements TaskGeneratorInterface {
         }
     }
 
+    //resets current energy storage to default energy
     public void resetCurrentEnergyStorage(){
         currentEnergyStorage = DEFAULT_ENERGY;
     }
+    //returns the current energy storage
     public int getCurrentEnergyStorage(){
         return currentEnergyStorage;
     }
+    //sets the current energy storage to a value between 1 and the maximum
     public void setCurrentEnergyStorage(int newEnergyNum){ 
         if(newEnergyNum < 201 && newEnergyNum > -1){
             currentEnergyStorage = newEnergyNum;
         }
     }
+
+    //boolean return value for to generate a task
     public boolean generateTask(){
         return true;
     }
+
+    /*
+     * takes 2 parameters
+     * task TASK TYPE
+     * unluckyProbablility double
+     * compares the unlucky probablility to the tasktypes probability
+     * if unlucky probablitlity <= the task types probablility of passing out then returns 1 and decreases energy storage /2
+     * if unlucky probablility <= the task types probablility of passing out and the unluckyProbablility <= the mining probability of dying(MINING)
+     * returns 2 after decreaseing the energy storage by 3/4
+     */
     public int getUnlucky(Task task, double unluckyProbability){
         if(unluckyProbability <= task.getTaskType().getPassingOutProbability()){
             if(unluckyProbability <= task.getTaskType().getDyingProbability()){
-                currentEnergyStorage = (int)(currentEnergyStorage / 0.75f);
+                currentEnergyStorage = (int)(currentEnergyStorage / .75f);
                 task.setPriority(0);
                 return 2;
             }
@@ -60,6 +75,9 @@ public class TaskGenerator implements TaskGeneratorInterface {
         }
         
     }
+    /*
+     * tostring override copied direclty from assignment
+     */
     public String toString(Task task, TaskInterface.TaskType taskType) {
         if(taskType == TaskInterface.TaskType.MINING) {
             return "     Mining " + task.getTaskDescription() + " at " + currentEnergyStorage + " energy points (Priority:" + task.getPriority() +")";

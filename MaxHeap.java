@@ -2,28 +2,28 @@
 //Left(i) = 2i
 //Right(i) = 2i + 1
 
-import java.util.Arrays;
+//import java.util.Arrays;
 
 public class MaxHeap{
 
 /*
- * constructor creates an empty array
+ * constructor creates an empty heap
  */
-    protected Task[] array; // heapsort store value
+    protected Task[] heap; // heapsort store value
     private int heapSize; // the size of the heap used when making insert and 
 
 
     public MaxHeap(){
-        this.array = new Task[]{};
-        this.heapSize = this.array.length;
+        this.heap = new Task[]{};
+        this.heapSize = this.heap.length;
     }
 /*
- * constructor creates an object to use as an array
+ * constructor creates an object to use as an heap
  */
     public MaxHeap(Task[] A){
-       this.array = A.clone();
-       buildMaxHeap(this.array);
-       this.heapSize = this.array.length; // initialized array heapsize is full array size
+       this.heap = A.clone();
+       buildMaxHeap(this.heap);
+       this.heapSize = this.heap.length; // initialized heap heapsize is full array size
     }
 
 /*
@@ -58,29 +58,44 @@ public class MaxHeap{
         
     }
 
+    //returns the parent of index
+    int parent(int index){
+        index = index / 2;
+        return index;
+    }
+    //returns the left child of a parent index
+    int left(int index){
+        index = 2 * index;
+        return index;
+    }
+    //returns the right child of a parent index
+    int right(int index){
+        index = (2 * index) + 1;
+        return index;
+    }
     /*
      * increases the key of task based on the position in the queue
      */
     public void increaseKey(int positon, Task task){
-        if(this.array[positon].compareTo(task) == 1){
+        if(this.heap[positon].compareTo(task) == 1){
             System.out.println("Error: new key must be larger than old key");
         }
         task.setPriority(positon);
         
-        int parent_of_index = Math.floorDiv(positon - 1,2);
+        
 
-        while(positon > 0 && this.array[parent_of_index].compareTo(this.array[positon]) == -1){
-            Task temp = this.array[positon];
-            this.array[positon] = this.array[parent_of_index];
-            this.array[parent_of_index] = temp;
+        while(positon > 0 && this.heap[parent(positon)].compareTo(this.heap[positon]) == -1){ // used compare to method
+            Task temp = this.heap[positon];
+            this.heap[positon] = this.heap[parent(positon)];
+            this.heap[parent(positon)] = temp;
 
-            positon = parent_of_index;
+            positon = parent(positon);
         }
     }
 /*
  * Bottom up approach to creating a max heap, calls max_heapify
  * takes a list of objects:  A
- * returns a max heap version of the array passed in
+ * returns a max heap version of the heap passed in
  */
     private Task[] buildMaxHeap(Task[] A){
     
@@ -90,19 +105,19 @@ public class MaxHeap{
             maxHeapify(A, parent);
         }
 
-        return this.array;
+        return this.heap;
     }
 
     //Sorting method for heapsort must be called on a heapsort object
     public void heapSort(){
-        buildMaxHeap(this.array);
+        buildMaxHeap(this.heap);
         for(int i = this.heapSize -1; i > 1; i--){
             Task temp;
-            temp = this.array[1];
-            this.array[1] = this.array[i];
-            this.array[i] = temp;
+            temp = this.heap[1];
+            this.heap[1] = this.heap[i];
+            this.heap[i] = temp;
             this.heapSize--;
-            maxHeapify(this.array, 0);
+            maxHeapify(this.heap, 0);
 
 
         }
@@ -112,13 +127,7 @@ public class MaxHeap{
 
     //method for inserting a value into heap
     public void insert(Task task){
-        Task[] Array_copy = new Task[this.heapSize *2];
-        Array_copy = this.array.clone();
-        
-        Array_copy[this.heapSize + 1] = task;
-        this.array = Array_copy.clone();
-         
-        maxHeapify(this.array, heapSize);
+        //unsure how to impliment this, have prof explain it
 
 
     
@@ -127,7 +136,7 @@ public class MaxHeap{
 
    
     
-    //puts max value at the end of the array
+    //puts max value at the end of the heap
     public Task extractMax(){
         Task max;
         if(this.isEmpty()){
@@ -137,9 +146,9 @@ public class MaxHeap{
         else{
             max = max();
 
-            this.array[0] = this.array[this.heapSize-1];
+            this.heap[0] = this.heap[this.heapSize-1];
             this.heapSize = this.heapSize -1;
-            maxHeapify(this.array, 0);
+            maxHeapify(this.heap, 0);
             return max;
         }
     }
@@ -149,9 +158,9 @@ public class MaxHeap{
         if(this.isEmpty()){
             System.out.println("Error: Heap Underflow");
         }
-        return this.array[0];
+        return this.heap[0];
     }
-    // method for defineing whether or not an array is empty
+    // method for defineing whether or not an heap is empty
     public boolean isEmpty(){
         if(this.heapSize > 0){
             return false;
@@ -165,7 +174,7 @@ public class MaxHeap{
     }
     //getter method for heap
     Task[] getHeap(){
-        return this.array;
+        return this.heap;
     }
     
 
