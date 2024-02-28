@@ -138,6 +138,7 @@ public class MaxHeap{
             this.heap = temp;
         }
         this.heapSize++;
+        this.heap[heapSize -1] = task;
         increaseKey(this.heapSize-1, task);
         
 
