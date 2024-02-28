@@ -15,8 +15,8 @@ public class MaxHeap{
 
 
     public MaxHeap(){
-        this.heap = new Task[]{};
-        this.heapSize = this.heap.length;
+        this.heap = new Task[256];
+        this.heapSize = 0;
     }
 /*
  * constructor creates an object to use as an heap
@@ -24,7 +24,7 @@ public class MaxHeap{
     public MaxHeap(Task[] A){
        this.heap = A.clone();
        buildMaxHeap(this.heap);
-       this.heapSize = this.heap.length; // initialized heap heapsize is full array size
+       this.heapSize = 0; // initialized heap heapsize is full array size
     }
 
 /*
@@ -131,6 +131,15 @@ public class MaxHeap{
     //method for inserting a value into heap
     public void insert(Task task){
         //unsure how to impliment this, have prof explain it
+        if(this.heapSize == this.heap.length){
+            Task[] temp;
+            temp = new Task[this.heap.length*2];
+            System.arraycopy(this.heap, 0, temp, 0, this.heap.length);
+            this.heap = temp;
+        }
+        this.heapSize++;
+        increaseKey(heapSize, task);
+        
 
         //unsure about doubleing size as well
     
