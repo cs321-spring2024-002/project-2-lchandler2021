@@ -138,7 +138,7 @@ public class MaxHeap{
             this.heap = temp;
         }
         this.heapSize++;
-        increaseKey(heapSize, task);
+        increaseKey(this.heapSize-1, task);
         
 
         //unsure about doubleing size as well
@@ -156,9 +156,10 @@ public class MaxHeap{
             return null;
         }
         else{
-            max = max();
+            max = this.max();
 
             this.heap[0] = this.heap[this.heapSize-1];
+
             this.heapSize = this.heapSize -1;
             maxHeapify(this.heap, 0);
             return max;
@@ -174,7 +175,7 @@ public class MaxHeap{
     }
     // method for defineing whether or not an heap is empty
     public boolean isEmpty(){
-        if(this.heapSize > 0){
+        if(this.heapSize >= 0){
             return false;
         }
         return true;
