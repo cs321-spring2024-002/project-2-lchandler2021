@@ -81,6 +81,8 @@ class Task implements TaskInterface, Comparable<Task>{
         }else if (this.getPriority() == task_two.getPriority()){
             if(this.getHourCreated() < task_two.getHourCreated()){
                 return 1;
+            }else if(this.getHourCreated() == task_two.getHourCreated()){
+                return 0;
             }
             else{
                 return -1;
@@ -134,6 +136,27 @@ class Task implements TaskInterface, Comparable<Task>{
     // resets waiting time to zero
     public void resetWaitingTime(){
         this.WAITING_TIME = 0;
+    }
+    public String toString(){
+        if(this.TaskType == TaskInterface.TaskType.MINING) {
+            return this.getTaskType() +" " + this.getTaskDescription() + " at Hour: " + this.getHourCreated() + ":00";
+        }
+        if(this.TaskType == TaskInterface.TaskType.FISHING) {
+            return this.getTaskType() +" " + this.getTaskDescription() + " at Hour: " + this.getHourCreated()+ ":00";
+        }
+        if(this.TaskType == TaskInterface.TaskType.FARM_MAINTENANCE) {
+            return this.getTaskType() +" " + this.getTaskDescription() + " at Hour: " + this.getHourCreated()+ ":00";
+        }
+        if(this.TaskType == TaskInterface.TaskType.FORAGING) {
+            return this.getTaskType() +" " + this.getTaskDescription() + " at Hour: " + this.getHourCreated()+ ":00";
+        }
+        if(this.TaskType == TaskInterface.TaskType.FEEDING) {
+            return this.getTaskType() +" " + this.getTaskDescription() + " at Hour: " + this.getHourCreated()+ ":00";
+        }
+        if(this.TaskType == TaskInterface.TaskType.SOCIALIZING) {
+            return this.getTaskType() +" " + this.getTaskDescription() + " at Hour: "+ this.getHourCreated()+ ":00";
+        }
+        else { return "nothing to see here..."; }
     }
 
 }

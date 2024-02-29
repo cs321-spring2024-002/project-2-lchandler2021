@@ -78,7 +78,7 @@ public class MaxHeap{
      * increases the key of task based on the position in the queue
      */
     public void increaseKey(int positon, Task task){
-
+        
         if(this.heap[positon].compareTo(task) == 1){
             System.out.println("Error: new key must be larger than old key");
         }
@@ -176,7 +176,7 @@ public class MaxHeap{
     }
     // method for defineing whether or not an heap is empty
     public boolean isEmpty(){
-        if(this.heapSize >= 0){
+        if(this.heapSize > 0){
             return false;
         }
         return true;

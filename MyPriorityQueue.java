@@ -34,11 +34,12 @@ public class MyPriorityQueue extends MaxHeap{
         
         for(int i = 0; i < heap1.getHeapSize(); i++){
             heap1.getHeap()[i].incrementWaitingTime();
+            
             if(heap1.getHeap()[i].getWaitingTime() >= timeToIncrementPriority){
                 this.heap1.getHeap()[i].setWaitingTime(0);
                 if(heap1.getHeap()[i].getPriority() < maxPriority){
                    heap1.getHeap()[i].setPriority(heap1.getHeap()[i].getPriority() + 1);
-                   increaseKey(i, heap1.getHeap()[i]);
+                   heap1.increaseKey(i, heap1.getHeap()[i]);
                 }
             }
         }
