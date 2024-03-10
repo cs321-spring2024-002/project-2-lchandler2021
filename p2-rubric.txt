@@ -1,42 +1,55 @@
-Name:
+Name: Lance Chandler
 
-Grade: /90
+Grade: 64/90
 
 Rubric for the Stardew Valley using Priority Queue project
 
 Comments:
+	Make sure to complete all sections of the README. More comments by it.
+	Also make sure to have actual javadocs before all methods, not just comments (/** instead of //)
+	Have inline comments that explain what some lines that may be confusing to readers might do
+	Make sure to have all variables and methods camel case UNLESS it is constant as well as keep whitespace and indentation consistent
+	Lastly, make sure to write the full tester. It helps with debugging a lot! 
 
 -Submission
-	-Required files are not missing [return to student for fixing, if needed]:
+	-Required files are not missing [return to student for fixing, if needed]: okay
 		-Provide junit jar file if you are using JUnit testing
 	-Did not submit unnecessary files (such as .class files):
-	-Provided classes weren't modified [0 points, not graded]:
+		-1, included test-cases folder
+	-Provided classes weren't modified [0 points, not graded]: okay
 
 Documentation: [20 points]
-	-README.md: 
+	-README.md:  
+		-1, Compiling and Using section is showing how to run the program, not the tests
+		-4, No Results or Sources Used section
 	-Javadoc for all methods:
+		-3, had javadocs for some methods, however some of them were not "Javadocs" and rather just comments
+			above the methods
 	-Appropriate but not excessive inline comments:
+		-5, no inline comments that help describe what a method does
 
 Code design and style: [15 points]
-	-Appropriate variable and method names:
+	-Appropriate variable and method names: 
+		-2, multiple variables did not follow camel case and were either all capitals or just one word with a capital
 	-Appropriate code style:
-	-Interfaces - all provided interfaces were implemented:
-	-Inheritance - MyPriorityQueue class extends MaxHeap class appropriately:
-	-MaxHeap - grows by doubling the array using a private method:
+		-1, indentation and unneeded white space in both MaxHeap and MaxHeapTest
+	-Interfaces - all provided interfaces were implemented: okay
+	-Inheritance - MyPriorityQueue class extends MaxHeap class appropriately: okay
+	-MaxHeap - grows by doubling the array using a private method: private heapify, but called in public insert
 
 Functionality: [55 points]
-	-MaxHeapTest - appropriate unit tests for MaxHeap class [10 points]:
+	-MaxHeapTest - appropriate unit tests for MaxHeap class [10 points]: -9, didn't have enough tests and the ones provided did not all pass
 
 	-Matches outputs for the six inputs in the test-cases subfolder [36 points]:
-		-in1/out1:
-		-in2/out2:
-		-in3/out3:
-		-in4/out4:
-		-in5/out5:
-		-in6/out6:
+		-in1/out1: okay
+		-in2/out2: okay
+		-in3/out3: okay
+		-in4/out4: okay
+		-in5/out5: okay
+		-in6/out6: okay
 
 Extra Credit: Generic MaxHeap:
-	-Used generic MaxHeap [+10 points]:
+	-Used generic MaxHeap [+10 points]: no
 		
 
 
